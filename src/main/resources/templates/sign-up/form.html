@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link th:href="@{/css/bootstrap.min.css}"  rel="stylesheet">
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
 </head>
 <body>
 <h2>Sign Up</h2>
-<form class="py-5 text-center" th:action method="post">
-    <label>* email</label>
-    <input type="text" name="email" />
+<form class="py-5 text-center container" th:object="${user}" th:action method="post">
+    <label >email</label>
+    <input th:field="*{email}"  th:errroclass="field-error" type="text" />
+    <div class="field-error" th:erros="*{email}">이메일 에러</div>
     <label>* username</label>
-    <input type="text" name="username" />
+    <input th:field="*{username}" type="text" >
     <label>* password</label>
-    <input type="password" name="password" />
+    <input th:field="*{password}" type="password" />
     <label>* confirm password</label>
-    <input type="password" name="confirm-password"/>
+    <input th:field="*{confirmPassword}" type="password"/>
     <label>age</label>
-    <input type="number" name="age">
+    <input th:field="*{age}" type="number">
     <label>birth day</label>
-    <input type="text" name="birth-day">
+    <input th:field="*{birthday}" type="text">
     <label>Gender</label>
-    <input type="text" name="gender">
+    <input th:field="*{gender}" type="text">
     <button>confirm</button>
 </form>
 </body>
