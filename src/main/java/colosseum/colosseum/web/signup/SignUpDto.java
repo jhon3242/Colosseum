@@ -14,6 +14,7 @@ public class SignUpDto {
 	private String username;
 
 	@Email
+	@NotBlank
 	private String email;
 
 	@NotBlank

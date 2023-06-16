@@ -37,37 +37,37 @@
         </div>
         <div>
             <label for= "email" >Email</label>
-            <input class="form-control" th:field="*{email}"  th:errroclass="field-error" type="text" />
+            <input class="form-control" th:field="*{email}"  th:errorclass="field-error" type="text" />
             <div class="field-error" th:errors="*{email}">email error</div>
         </div>
         <div>
             <label for="username" >Username</label>
-            <input class="form-control" th:field="*{username}" type="text" >
+            <input class="form-control" th:field="*{username}" th:errorclass="field-error" type="text" >
             <div class="field-error" th:errors="*{username}">username error</div>
         </div>
         <div>
             <label for="password">Password</label>
-            <input class="form-control" th:field="*{password}" type="password" />
+            <input class="form-control" th:field="*{password}" th:errorclass="field-error" type="password" />
             <div class="field-error" th:errors="*{password}">password error</div>
         </div>
         <div>
             <label for="confirmPassword">Confirm password</label>
-            <input class="form-control" th:field="*{confirmPassword}" type="password"/>
+            <input class="form-control" th:field="*{confirmPassword}" th:errorclass="field-error" type="password"/>
             <div class="field-error" th:errors="*{confirmPassword}">confirmPassword error</div>
         </div>
         <div>
             <label for="age">age</label>
-            <input class="form-control" th:field="*{age}" type="number">
+            <input class="form-control" th:field="*{age}" th:errorclass="field-error" type="number">
             <div class="field-error" th:errors="*{age}">age error</div>
         </div>
         <div>
             <label for="birthday">Birth day</label>
-            <input class="form-control" th:field="*{birthday}" type="text">
+            <input class="form-control" th:field="*{birthday}" th:errorclass="field-error" type="text">
             <div class="field-error" th:errors="*{birthday}">birthday error</div>
         </div>
         <div>
             <label for="gender">Gender</label>
-            <input class="form-control" th:field="*{gender}" type="text">
+            <input class="form-control" th:field="*{gender}" th:errorclass="field-error" type="text">
             <div class="field-error" th:errors="*{gender}">gender error</div>
         </div>
         <hr class="my-4">

@@ -31,7 +31,7 @@ public class SignUpController {
 	                     BindingResult bindingResult) {
 
 		if (!Objects.equals(signUpDto.getPassword(), signUpDto.getConfirmPassword())) {
-			bindingResult.rejectValue("password", "nomatch", "비밀번호가 서로 일치하지 않습니다.");
+			bindingResult.rejectValue("password", "NotMatch", "비밀번호가 서로 일치하지 않습니다.");
 		}
 		if (bindingResult.hasErrors()) {
 			log.error("회원 가입 에러 발생 {}", bindingResult);
