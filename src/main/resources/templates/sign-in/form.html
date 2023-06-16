@@ -27,7 +27,7 @@
     </div>
     <h4 class="mb-3">로그인 정보 입력</h4>
     <div class="py-5">
-        <form th:action method="post" th:object="${user}">
+        <form th:action method="post" th:object="${signInDto}">
             <div>
                 <label for="email">email</label>
                 <input class="form-control" th:field="*{email}" th:errorclass="field-error" placeholder="user@gmail.com">
