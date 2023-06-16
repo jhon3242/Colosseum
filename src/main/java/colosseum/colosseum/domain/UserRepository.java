@@ -9,8 +9,8 @@ import java.util.Map;
 
 @Repository
 public class UserRepository {
-	private final Map<Long, User> repository = new HashMap<>();
-	private Long sequence = 0L;
+	private static final Map<Long, User> repository = new HashMap<>();
+	private static Long sequence = 0L;
 
 	public User save(User user) {
 		user.setId(sequence++);
