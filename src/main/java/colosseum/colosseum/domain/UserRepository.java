@@ -3,13 +3,13 @@ package colosseum.colosseum.domain;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class UserRepository {
-	private static final Map<Long, User> repository = new HashMap<>();
+	private static final Map<Long, User> repository = new ConcurrentHashMap<>();
 	private static Long sequence = 0L;
 
 	public User save(User user) {

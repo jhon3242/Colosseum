@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Getter @Setter @ToString
 public class User {
@@ -32,5 +33,9 @@ public class User {
 		this.age = signUpDto.getAge();
 		this.birthday = signUpDto.getBirthday();
 		this.gender = signUpDto.getGender();
+	}
+
+	public boolean isMatchPassword(String password) {
+		return Objects.equals(this.password, password);
 	}
 }
