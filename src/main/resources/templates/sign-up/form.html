@@ -24,9 +24,9 @@
 
 <div class="container">
     <div class="py-5 text-center">
-        <h2>회원 가입</h2>
+        <h2 th:text="#{signUp}">회원 가입</h2>
     </div>
-    <h4 class="mb-3">회원 정보 입력</h4>
+    <h4 th:text="#{page.signUp}" class="mb-3">회원 정보 입력</h4>
     <form class="py-5  container" th:object="${user}" th:action method="post">
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="err">
@@ -34,37 +34,37 @@
             </p>
         </div>
         <div>
-            <label for= "email" >Email</label>
+            <label th:text="#{label.email}" for= "email" >Email</label>
             <input class="form-control" th:field="*{email}"  th:errorclass="field-error" type="text" />
             <div class="field-error" th:errors="*{email}">email error</div>
         </div>
         <div>
-            <label for="username" >Username</label>
+            <label th:text="#{label.username}" for="username" >Username</label>
             <input class="form-control" th:field="*{username}" th:errorclass="field-error" type="text" >
             <div class="field-error" th:errors="*{username}">username error</div>
         </div>
         <div>
-            <label for="password">Password</label>
+            <label th:text="#{label.password}" for="password">Password</label>
             <input class="form-control" th:field="*{password}" th:errorclass="field-error" type="password" />
             <div class="field-error" th:errors="*{password}">password error</div>
         </div>
         <div>
-            <label for="confirmPassword">Confirm password</label>
+            <label th:text="#{label.confirmPassword}" for="confirmPassword">Confirm password</label>
             <input class="form-control" th:field="*{confirmPassword}" th:errorclass="field-error" type="password"/>
             <div class="field-error" th:errors="*{confirmPassword}">confirmPassword error</div>
         </div>
         <div>
-            <label for="age">age</label>
+            <label th:text="#{label.age}" for="age">age</label>
             <input class="form-control" th:field="*{age}" th:errorclass="field-error" type="number">
             <div class="field-error" th:errors="*{age}">age error</div>
         </div>
         <div>
-            <label for="birthday">Birth day</label>
+            <label th:text="#{label.birthday}" for="birthday">Birth day</label>
             <input class="form-control" th:field="*{birthday}" th:errorclass="field-error" type="text">
             <div class="field-error" th:errors="*{birthday}">birthday error</div>
         </div>
         <div>
-            <label for="gender">Gender</label>
+            <label th:text="#{label.gender}" for="gender">Gender</label>
             <input class="form-control" th:field="*{gender}" th:errorclass="field-error" type="text">
             <div class="field-error" th:errors="*{gender}">gender error</div>
         </div>
@@ -72,12 +72,12 @@
 
         <div class="row">
             <div class="col">
-                <button class="w-100 btn btn-secondary btn-lg" type="button"
+                <button th:text="#{button.cancel}" class="w-100 btn btn-secondary btn-lg" type="button"
                         onclick="location.href='main.html'"
                         th:onclick="|location.href='@{/}'|">취소</button>
             </div>
             <div class="col">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">회원 가입</button>
+                <button th:text="#{signUp}" class="w-100 btn btn-primary btn-lg" type="submit">회원 가입</button>
             </div>
         </div>
     </form>
