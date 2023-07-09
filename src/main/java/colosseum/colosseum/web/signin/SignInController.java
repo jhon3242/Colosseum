@@ -19,18 +19,17 @@ import java.util.Objects;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/sign-in")
 public class SignInController {
 
 	private final UserRepository userRepository;
 	private final SignInService signInService;
 
-	@GetMapping
+	@GetMapping("/sign-in")
 	public String signInForm(@ModelAttribute SignInDto signInDto) {
 		return "sign-in/signInForm";
 	}
 
-	@PostMapping
+	@PostMapping("/sign-in")
 	public String signIn(@Validated @ModelAttribute SignInDto signInDto,
 	                     BindingResult bindingResult, HttpServletRequest request) {
 
@@ -45,6 +44,16 @@ public class SignInController {
 		HttpSession session = request.getSession();
 		session.setAttribute(SessionConst.LOGIN_USER, findUser);
 		log.info("유저 로그인 완료 {}", findUser);
+		return "redirect:/";
+	}
+
+	@PostMapping("/sign-out")
+	public String signOut(HttpServletRequest request) {
+		log.info("로그아웃 요청");
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
 		return "redirect:/";
 	}
 }

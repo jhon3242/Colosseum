@@ -20,7 +20,7 @@ public class HomeController {
 			return "home";
 		}
 		model.addAttribute("user", user);
-		log.info("로그인 유저");
-		return "loginHome";
+		log.info("로그인 유저 {}", user);
+		return "signInHome";
 	}
 }
