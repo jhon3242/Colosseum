@@ -28,6 +28,10 @@
     <h4 class="mb-3" th:text="#{page.signIn}">로그인 정보 입력</h4>
     <div class="py-5">
         <form th:action method="post" th:object="${signInDto}">
+            <div th:if="${#fields.hasGlobalErrors()}">
+                <p class="field-error" th:each="error : ${#fields.globalErrors()}"
+                   th:text="${error}">글로벌 오류 메시지</p>
+            </div>
             <div>
                 <label th:text="#{label.email}" for="email">email</label>
                 <input class="form-control" th:field="*{email}" th:errorclass="field-error" placeholder="user@gmail.com">

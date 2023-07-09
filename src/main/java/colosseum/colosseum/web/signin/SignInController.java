@@ -27,7 +27,7 @@ public class SignInController {
 
 	@GetMapping
 	public String signInForm(@ModelAttribute SignInDto signInDto) {
-		return "sign-in/form";
+		return "sign-in/signInForm";
 	}
 
 	@PostMapping
@@ -37,10 +37,10 @@ public class SignInController {
 		User findUser = signInService.signIn(signInDto.getEmail(), signInDto.getPassword());
 
 		if (findUser == null || !findUser.isMatchPassword(signInDto.getPassword())) {
-			bindingResult.reject("NotMatch");
+			bindingResult.reject("SignInFail");
 		}
 		if (bindingResult.hasErrors()) {
-			return "sign-in/form";
+			return "sign-in/signInForm";
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute(SessionConst.LOGIN_USER, findUser);
