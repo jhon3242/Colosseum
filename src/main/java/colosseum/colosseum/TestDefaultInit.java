@@ -1,7 +1,7 @@
 package colosseum.colosseum;
 
-import colosseum.colosseum.domain.User;
-import colosseum.colosseum.domain.UserRepository;
+import colosseum.colosseum.domain.user.User;
+import colosseum.colosseum.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

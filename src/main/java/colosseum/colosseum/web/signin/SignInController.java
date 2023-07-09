@@ -1,12 +1,12 @@
 package colosseum.colosseum.web.signin;
 
 import colosseum.colosseum.SessionConst;
-import colosseum.colosseum.domain.User;
-import colosseum.colosseum.domain.UserRepository;
+import colosseum.colosseum.domain.signin.SignInService;
+import colosseum.colosseum.domain.user.User;
+import colosseum.colosseum.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +23,7 @@ import java.util.Objects;
 public class SignInController {
 
 	private final UserRepository userRepository;
+	private final SignInService signInService;
 
 	@GetMapping
 	public String signInForm(@ModelAttribute SignInDto signInDto) {
@@ -32,9 +33,9 @@ public class SignInController {
 	@PostMapping
 	public String signIn(@Validated @ModelAttribute SignInDto signInDto,
 	                     BindingResult bindingResult, HttpServletRequest request) {
-		User findUser = userRepository.finaAll().stream().filter(v -> Objects.equals(v.getEmail(), signInDto.getEmail()))
-				.findAny()
-				.orElse(null);
+
+		User findUser = signInService.signIn(signInDto.getEmail(), signInDto.getPassword());
+
 		if (findUser == null || !findUser.isMatchPassword(signInDto.getPassword())) {
 			bindingResult.reject("NotMatch");
 		}

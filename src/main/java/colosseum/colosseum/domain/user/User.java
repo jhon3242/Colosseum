@@ -1,4 +1,4 @@
-package colosseum.colosseum.domain;
+package colosseum.colosseum.domain.user;
 
 import colosseum.colosseum.web.signup.SignUpDto;
 import lombok.Getter;

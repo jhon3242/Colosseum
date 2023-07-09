@@ -1,7 +1,7 @@
 package colosseum.colosseum.web;
 
 import colosseum.colosseum.SessionConst;
-import colosseum.colosseum.domain.User;
+import colosseum.colosseum.domain.user.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

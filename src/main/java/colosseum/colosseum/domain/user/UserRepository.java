@@ -1,10 +1,8 @@
-package colosseum.colosseum.domain;
+package colosseum.colosseum.domain.user;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -20,6 +18,12 @@ public class UserRepository {
 
 	public User findById(Long id) {
 		return repository.get(id);
+	}
+
+	public Optional<User> findByEmail(String email) {
+		 return finaAll().stream()
+				.filter(user -> Objects.equals(user.getEmail(), email))
+				.findFirst();
 	}
 
 	public List<User> finaAll() {
