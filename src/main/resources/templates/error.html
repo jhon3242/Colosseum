@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>에러 페이지</title>
     <link th:href="@{/css/bootstrap.min.css}"
-          href="../css/bootstrap.min.css" rel="stylesheet">
+          href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
             max-width: 560px;
@@ -39,9 +39,10 @@
 </head>
 <body>
 <div class="container">
-    <img src="../../static/img/error-page.jpg">
-    <button class="w-75 btn btn-primary btn-lg" th:text="#{home}"
-            type="submit">Home</button>
+    <h2>404 Error</h2>
+<!--    <img src="../static/images/error-page.jpg" th:src="@{images/error-page.jpg}" , alt="image">-->
+<!--    <button class="w-75 btn btn-primary btn-lg" th:text="#{home}"-->
+<!--            type="submit" onclick=>Home</button>-->
 </div>
 </body>
 </html>

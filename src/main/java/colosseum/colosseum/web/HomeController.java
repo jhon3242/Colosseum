@@ -14,7 +14,8 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String mainPage(@SessionAttribute(value = SessionConst.LOGIN_USER, required = false) User user,
-	                       Model model){
+	                       Model model) throws Exception {
+
 		if (user == null) {
 			log.info("미 로그인 유저");
 			return "home";

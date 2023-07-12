@@ -28,7 +28,11 @@ public class SignInController {
 
 	@PostMapping("/sign-in")
 	public String signIn(@Validated @ModelAttribute SignInDto signInDto,
-	                     BindingResult bindingResult, HttpServletRequest request) {
+	                     BindingResult bindingResult, HttpServletRequest request) throws Exception {
+
+		boolean test = true;
+
+		if (test) throw new Exception("asd");
 
 		User findUser = signInService.signIn(signInDto.getEmail(), signInDto.getPassword());
 
