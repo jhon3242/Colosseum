@@ -11,7 +11,7 @@ public class UserRepository {
 	private static Long sequence = 0L;
 
 	public User save(User user) {
-		user.setId(sequence++);
+		user.setId(++sequence);
 		repository.put(user.getId(), user);
 		return user;
 	}

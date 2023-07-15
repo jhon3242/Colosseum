@@ -1,13 +1,14 @@
 package colosseum.colosseum.domain.user;
 
 import colosseum.colosseum.web.signup.SignUpDto;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Objects;
 
-@Getter @Setter @ToString
+@Getter @Setter @ToString @EqualsAndHashCode
 public class User {
 
 	private Long id;
