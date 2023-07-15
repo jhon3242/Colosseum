@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Getter @Setter @ToString
@@ -18,7 +16,10 @@ public class User {
 	private String password;
 	private int age;
 	private String birthday;
-	private String gender;
+	private Gender gender;
+
+	public User() {
+	}
 
 	public User(String username, String email, String password) {
 		this.username = username;

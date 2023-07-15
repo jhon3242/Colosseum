@@ -1,5 +1,6 @@
 package colosseum.colosseum.web.signup;
 
+import colosseum.colosseum.domain.user.Gender;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
@@ -27,6 +28,6 @@ public class SignUpDto {
 	@Min(0)
 	private int age;
 	private String birthday;
-	private String gender;
+	private Gender gender;
 
 }

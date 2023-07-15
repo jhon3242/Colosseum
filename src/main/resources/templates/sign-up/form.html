@@ -65,7 +65,10 @@
         </div>
         <div>
             <label th:text="#{label.gender}" for="gender">Gender</label>
-            <input class="form-control" th:field="*{gender}" th:errorclass="field-error" type="text">
+            <div th:each="gender : ${genders}">
+                <input type="radio" th:field="*{gender}" th:value="${gender.name()}">
+                <label th:for="${#ids.prev('gender')}" th:text="${gender.name()}"></label>
+            </div>
             <div class="field-error" th:errors="*{gender}">gender error</div>
         </div>
         <hr class="my-4">

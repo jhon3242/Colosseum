@@ -30,10 +30,6 @@ public class SignInController {
 	public String signIn(@Validated @ModelAttribute SignInDto signInDto,
 	                     BindingResult bindingResult, HttpServletRequest request) throws Exception {
 
-		boolean test = true;
-
-		if (test) throw new Exception("asd");
-
 		User findUser = signInService.signIn(signInDto.getEmail(), signInDto.getPassword());
 
 		if (findUser == null || !findUser.isMatchPassword(signInDto.getPassword())) {

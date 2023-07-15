@@ -1,10 +1,12 @@
 package colosseum.colosseum.web.signup;
 
+import colosseum.colosseum.domain.user.Gender;
 import colosseum.colosseum.domain.user.User;
 import colosseum.colosseum.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +23,8 @@ public class SignUpController {
 	private final UserRepository userRepository;
 
 	@GetMapping
-	public String SignUpForm(@ModelAttribute("user") SignUpDto user) {
+	public String SignUpForm(@ModelAttribute("user") SignUpDto user, Model model) {
+		model.addAttribute("genders", Gender.values());
 		return "sign-up/form";
 	}
 
