@@ -3,25 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
 </head>
 <body>
-<h1>게시판 목록</h1>
-<table>
-    <thead>
-    <tr>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- 게시글 목록 데이터를 동적으로 반복하여 출력 -->
-    <tr th:each="post : ${posts}">
-        <td th:text="${post.title}"></td>
-        <td th:text="${post.author}"></td>
-        <td th:text="${{post.createdDate}}"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+    <h2 class="text-center py-5">게시판 목록</h2>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 게시글 목록 데이터를 동적으로 반복하여 출력 -->
+        <tr th:each="post : ${posts}">
+            <td th:text="${post.postId}"></td>
+            <td th:text="${post.title}"></td>
+            <td th:text="${post.author}"></td>
+            <td th:text="${{post.createdDate}}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -22,10 +22,9 @@ public class PostController {
 	@GetMapping
 	public String postList(Model model) {
 		log.info("post 페이지 요청");
-		List<Post> all = postRepository.findAll();
-		Post post = all.get(0);
-		log.info("post dateTime={}", post.getCreatedDate().toString());
-		model.addAttribute("posts", all);
+		model.addAttribute("posts", postRepository.findAll());
 		return "post/postList";
 	}
+
+
 }
