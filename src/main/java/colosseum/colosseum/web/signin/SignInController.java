@@ -40,8 +40,9 @@ public class SignInController {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute(SessionConst.LOGIN_USER, findUser);
-		log.info("유저 로그인 완료 {}", findUser);
-		return "redirect:/";
+		String requestURL = request.getParameter("requestURL");
+		log.info("유저 로그인 완료 {} redirect={}", findUser, requestURL);
+		return "redirect:" + requestURL;
 	}
 
 	@PostMapping("/sign-out")
