@@ -7,12 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -37,7 +39,16 @@ public class PostController {
 	}
 
 	@GetMapping("new")
-	public String newPostPage() {
+	public String newPostPage(@ModelAttribute Post post) {
 		return "/post/newPost";
+	}
+
+	@PostMapping("new")
+	public String newPost(@ModelAttribute Post post) {
+		post.setCreatedDate(LocalDateTime.now());
+		post.setModifiedDate(LocalDateTime.now());
+		postRepository.save(post);
+		log.info("post 새 글 작성 = {}", post);
+		return "redirect:/post";
 	}
 }
