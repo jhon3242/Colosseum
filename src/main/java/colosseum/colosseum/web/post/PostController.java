@@ -1,7 +1,9 @@
 package colosseum.colosseum.web.post;
 
+import colosseum.colosseum.SessionConst;
 import colosseum.colosseum.domain.post.Post;
 import colosseum.colosseum.domain.post.PostRepository;
+import colosseum.colosseum.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -13,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Slf4j
 @RequestMapping("/post")
@@ -39,14 +41,22 @@ public class PostController {
 	}
 
 	@GetMapping("new")
-	public String newPostPage(@ModelAttribute Post post) {
+	public String newPostPage(@ModelAttribute Post post, HttpServletRequest request) {
+		post.setAuthor(getAuthor(request));
 		return "/post/newPost";
 	}
 
+	private String getAuthor(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute(SessionConst.LOGIN_USER);
+		return user.getUsername();
+	}
+
 	@PostMapping("new")
-	public String newPost(@ModelAttribute Post post) {
+	public String newPost(@ModelAttribute Post post, HttpServletRequest request) {
 		post.setCreatedDate(LocalDateTime.now());
 		post.setModifiedDate(LocalDateTime.now());
+		post.setAuthor(getAuthor(request));
 		postRepository.save(post);
 		log.info("post 새 글 작성 = {}", post);
 		return "redirect:/post";
