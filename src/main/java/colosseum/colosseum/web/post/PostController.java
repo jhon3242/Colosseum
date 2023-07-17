@@ -1,9 +1,12 @@
 package colosseum.colosseum.web.post;
 
 import colosseum.colosseum.SessionConst;
+import colosseum.colosseum.domain.file.UploadFile;
 import colosseum.colosseum.domain.post.Post;
+import colosseum.colosseum.domain.post.PostForm;
 import colosseum.colosseum.domain.post.PostRepository;
 import colosseum.colosseum.domain.user.User;
+import colosseum.colosseum.web.file.FileUploadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/post")
@@ -23,6 +27,7 @@ import java.time.LocalDateTime;
 public class PostController {
 
 	private final PostRepository postRepository;
+	private final FileUploadService fileUploadService;
 
 	@GetMapping
 	public String postList(Model model) {
@@ -50,17 +55,23 @@ public class PostController {
 	}
 
 	@PostMapping("new")
-	public String newPost(@ModelAttribute Post post, HttpServletRequest request) {
-		setPostInfo(post, request);
+	public String newPost(@ModelAttribute("post") PostForm postForm, HttpServletRequest request) throws IOException {
+		Post post = getPost(postForm, request);
+		List<UploadFile> uploadFiles = fileUploadService.storeFiles(postForm.getImages());
+		post.setImages(uploadFiles);
 		log.info("post 새 글 작성 = {}", post);
 		return "redirect:/post";
 	}
 
-	private void setPostInfo(Post post, HttpServletRequest request) {
+	private Post getPost(PostForm postForm, HttpServletRequest request) {
+		Post post = new Post();
+		post.setTitle(postForm.getTitle());
+		post.setAuthor(postForm.getAuthor());
+		post.setContent(postForm.getContent());
 		post.setCreatedDate(LocalDateTime.now());
 		post.setModifiedDate(LocalDateTime.now());
 		post.setAuthor(getAuthor(request));
-		postRepository.save(post);
+		return postRepository.save(post);
 	}
 
 	@GetMapping("{postId}")
@@ -74,5 +85,4 @@ public class PostController {
 		model.addAttribute("post", post);
 		return "/post/postPage";
 	}
-
 }

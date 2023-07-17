@@ -24,6 +24,10 @@
             <p class="col align-items-end">작성일자: <span th:text="${{post.createdDate}}"></span></p>
         </div>
         <hr>
+        <div>
+            <img th:each="image : ${post.images}"
+                 th:src="|/images/${image.getStoreFileName()}|" width="300" height="300"/>
+        </div>
         <div class="" th:utext="${post.content}"></div>
         <hr>
     </div>

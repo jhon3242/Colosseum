@@ -27,8 +27,8 @@
             <textarea id="content" th:field="*{content}" class="form-control" rows="5" required></textarea>
         </div>
         <div class="form-group">
-            <label for="content">이미지 첨부</label>
-            <input th:field="*{images}" class="form-control" type="file" mul>
+            <label for="images">이미지 첨부</label>
+            <input id="images" th:field="*{images}" class="form-control" type="file" multiple="multiple">
         </div>
         <button type="submit" class="btn btn-primary">작성 완료</button>
         <a href="/post" class="btn btn-primary">취소</a>
