@@ -30,7 +30,7 @@
         </thead>
         <tbody>
         <tr th:each="post : ${posts}" th:onclick="|location.href='@{/post/{postId}(postId=${post.postId})}'|" >
-            <td th:text="${post.postId}"></td>
+            <td th:text="${{post.postId}}"></td>
             <td th:text="${post.title}"></td>
             <td th:text="${post.author}"></td>
             <td th:text="${{post.createdDate}}"></td>
