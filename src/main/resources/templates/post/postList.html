@@ -29,7 +29,6 @@
         </tr>
         </thead>
         <tbody>
-        <!-- 게시글 목록 데이터를 동적으로 반복하여 출력 -->
         <tr th:each="post : ${posts}" th:onclick="|location.href='@{/post/{postId}(postId=${post.postId})}'|" >
             <td th:text="${post.postId}"></td>
             <td th:text="${post.title}"></td>

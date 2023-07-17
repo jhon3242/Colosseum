@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세</title>
+    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="text-center py-5">게시글 상세</h2>
+    <div>
+        <div class="row">
+            <h4 class="align-items-start py-4">제목: <span th:text="${post.title}"></span></h4>
+            <p class="col align-items-end">작성자: <span th:text="${post.author}"></span></p>
+            <p class="col align-items-end">작성일자: <span th:text="${{post.createdDate}}"></span></p>
+        </div>
+        <hr>
+        <div class="" th:utext="${post.content}"></div>
+        <hr>
+    </div>
+    <a href="/post">게시글 목록으로 돌아가기</a>
+</div>
+</body>
+</html>
