@@ -1,4 +1,4 @@
-package colosseum.colosseum.domain.user;
+package colosseum.colosseum.domain.member;
 
 import org.springframework.stereotype.Repository;
 
@@ -6,27 +6,27 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-public class UserRepository {
-	private static final Map<Long, User> repository = new ConcurrentHashMap<>();
+public class MemberRepositoryImp implements MemberRepository {
+	private static final Map<Long, Member> repository = new ConcurrentHashMap<>();
 	private static Long sequence = 0L;
 
-	public User save(User user) {
+	public Member save(Member user) {
 		user.setId(++sequence);
 		repository.put(user.getId(), user);
 		return user;
 	}
 
-	public User findById(Long id) {
+	public Member findById(Long id) {
 		return repository.get(id);
 	}
 
-	public Optional<User> findByEmail(String email) {
-		 return finaAll().stream()
+	public Optional<Member> findByEmail(String email) {
+		 return findAll().stream()
 				.filter(user -> Objects.equals(user.getEmail(), email))
 				.findFirst();
 	}
 
-	public List<User> finaAll() {
+	public List<Member> findAll() {
 		return new ArrayList<>(repository.values());
 	}
 }

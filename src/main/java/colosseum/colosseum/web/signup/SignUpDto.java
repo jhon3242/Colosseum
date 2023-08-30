@@ -1,6 +1,6 @@
 package colosseum.colosseum.web.signup;
 
-import colosseum.colosseum.domain.user.Gender;
+import colosseum.colosseum.domain.member.Gender;
 import lombok.Data;
 
 import javax.validation.constraints.Email;

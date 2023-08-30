@@ -1,7 +1,7 @@
 package colosseum.colosseum.web;
 
 import colosseum.colosseum.SessionConst;
-import colosseum.colosseum.domain.user.User;
+import colosseum.colosseum.domain.member.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 public class HomeController {
 
 	@GetMapping("/")
-	public String mainPage(@SessionAttribute(value = SessionConst.LOGIN_USER, required = false) User user,
+	public String mainPage(@SessionAttribute(value = SessionConst.LOGIN_USER, required = false) Member user,
 	                       Model model) throws Exception {
 
 		if (user == null) {

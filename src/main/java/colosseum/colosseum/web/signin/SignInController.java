@@ -2,13 +2,15 @@ package colosseum.colosseum.web.signin;
 
 import colosseum.colosseum.SessionConst;
 import colosseum.colosseum.domain.signin.SignInService;
-import colosseum.colosseum.domain.user.User;
+import colosseum.colosseum.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -28,9 +30,9 @@ public class SignInController {
 
 	@PostMapping("/sign-in")
 	public String signIn(@Validated @ModelAttribute SignInDto signInDto,
-	                     BindingResult bindingResult, HttpServletRequest request) throws Exception {
+	                     BindingResult bindingResult, HttpServletRequest request) {
 
-		User findUser = signInService.signIn(signInDto.getEmail(), signInDto.getPassword());
+		Member findUser = signInService.signIn(signInDto.getEmail(), signInDto.getPassword());
 
 		if (findUser == null || !findUser.isMatchPassword(signInDto.getPassword())) {
 			bindingResult.reject("SignInFail");
@@ -40,9 +42,15 @@ public class SignInController {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute(SessionConst.LOGIN_USER, findUser);
-		String requestURL = request.getParameter("requestURL");
+		String requestURL = getRequestURL(request);
 		log.info("유저 로그인 완료 {} redirect={}", findUser, requestURL);
 		return "redirect:" + requestURL;
+	}
+
+	private String getRequestURL(HttpServletRequest request) {
+		String requestURL = request.getParameter("requestURL");
+		if (requestURL == null) requestURL = "";
+		return requestURL;
 	}
 
 	@PostMapping("/sign-out")

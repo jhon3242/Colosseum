@@ -1,8 +1,8 @@
 package colosseum.colosseum.web.signup;
 
-import colosseum.colosseum.domain.user.Gender;
-import colosseum.colosseum.domain.user.User;
-import colosseum.colosseum.domain.user.UserRepository;
+import colosseum.colosseum.domain.member.Gender;
+import colosseum.colosseum.domain.member.Member;
+import colosseum.colosseum.domain.member.MemberRepositoryImp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import java.util.Objects;
 @RequestMapping("/sign-up")
 public class SignUpController {
 
-	private final UserRepository userRepository;
+	private final MemberRepositoryImp userRepository;
 
 	@GetMapping
 	public String SignUpForm(@ModelAttribute("user") SignUpDto user, Model model) {
@@ -40,7 +40,7 @@ public class SignUpController {
 			return "sign-up/form";
 		}
 
-		User user = new User(signUpDto);
+		Member user = new Member(signUpDto);
 		userRepository.save(user);
 		log.info("회원 가입 완료 {}", user);
 		return "redirect:/";

@@ -2,8 +2,8 @@ package colosseum.colosseum;
 
 import colosseum.colosseum.domain.post.Post;
 import colosseum.colosseum.domain.post.PostRepository;
-import colosseum.colosseum.domain.user.User;
-import colosseum.colosseum.domain.user.UserRepository;
+import colosseum.colosseum.domain.member.Member;
+import colosseum.colosseum.domain.member.MemberRepositoryH2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class TestDefaultInit {
 
-	private final UserRepository userRepository;
+	private final MemberRepositoryH2 userRepository;
 	private final PostRepository postRepository;
 
 	/**
@@ -37,8 +37,7 @@ public class TestDefaultInit {
 	}
 
 	private void initUser() {
-		User test = new User("test", "test@test.com", "test!");
+		Member test = new Member("test", "test@test.com", "test!");
 		userRepository.save(test);
 	}
-
 }

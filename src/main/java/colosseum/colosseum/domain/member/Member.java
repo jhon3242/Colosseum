@@ -1,4 +1,4 @@
-package colosseum.colosseum.domain.user;
+package colosseum.colosseum.domain.member;
 
 import colosseum.colosseum.web.signup.SignUpDto;
 import lombok.EqualsAndHashCode;
@@ -9,7 +9,7 @@ import lombok.ToString;
 import java.util.Objects;
 
 @Getter @Setter @ToString @EqualsAndHashCode
-public class User {
+public class Member {
 
 	private Long id;
 	private String username;
@@ -19,16 +19,16 @@ public class User {
 	private String birthday;
 	private Gender gender;
 
-	public User() {
+	public Member() {
 	}
 
-	public User(String username, String email, String password) {
+	public Member(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
 
-	public User(SignUpDto signUpDto) {
+	public Member(SignUpDto signUpDto) {
 		this.username = signUpDto.getUsername();
 		this.email = signUpDto.getEmail();
 		this.password = signUpDto.getPassword();

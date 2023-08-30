@@ -5,7 +5,7 @@ import colosseum.colosseum.domain.file.UploadFile;
 import colosseum.colosseum.domain.post.Post;
 import colosseum.colosseum.domain.post.PostForm;
 import colosseum.colosseum.domain.post.PostRepository;
-import colosseum.colosseum.domain.user.User;
+import colosseum.colosseum.domain.member.Member;
 import colosseum.colosseum.web.file.FileUploadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +50,7 @@ public class PostController {
 
 	private String getAuthor(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		User user = (User) session.getAttribute(SessionConst.LOGIN_USER);
+		Member user = (Member) session.getAttribute(SessionConst.LOGIN_USER);
 		return user.getUsername();
 	}
 
