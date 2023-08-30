@@ -2,6 +2,7 @@ package colosseum.colosseum.web.signup;
 
 import colosseum.colosseum.domain.member.Gender;
 import colosseum.colosseum.domain.member.Member;
+import colosseum.colosseum.domain.member.MemberRepository;
 import colosseum.colosseum.domain.member.MemberRepositoryImp;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import java.util.Objects;
 @RequestMapping("/sign-up")
 public class SignUpController {
 
-	private final MemberRepositoryImp userRepository;
+	private final MemberRepository userRepository;
 
 	@GetMapping
 	public String SignUpForm(@ModelAttribute("user") SignUpDto user, Model model) {

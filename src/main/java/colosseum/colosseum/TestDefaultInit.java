@@ -22,7 +22,7 @@ public class TestDefaultInit {
 	 */
 	@PostConstruct
 	public void init() {
-		initUser();
+//		initUser();
 		initPost();
 	}
 

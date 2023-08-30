@@ -29,4 +29,9 @@ public class MemberRepositoryImp implements MemberRepository {
 	public List<Member> findAll() {
 		return new ArrayList<>(repository.values());
 	}
+
+	@Override
+	public void delete(Member member) {
+
+	}
 }
