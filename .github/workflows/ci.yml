@@ -13,9 +13,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash # 없으면 안되나?
+#    defaults:
+#      run:
+#        shell: bash # 없으면 안되나?
 
     steps:
       - name: Checkout code
