@@ -1,0 +1,32 @@
+name: BE CI
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash # 없으면 안되나?
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: gradlew 사용 가능하도록 권한 변경
+        run: chmod +x gradlew
+
+      - name: Build gradlew
+        run: ./gradlew build
