@@ -8,7 +8,7 @@ on:
       - develop
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -18,6 +18,9 @@ jobs:
 #        shell: bash # 없으면 안되나?
 
     steps:
+      - name: 권한이 read만 있는데 파일을 만들 수 있을까?
+        run: touch test.txt
+
       - name : 기본 shell 이 뭐지?
         run: echo $SHELL
 
