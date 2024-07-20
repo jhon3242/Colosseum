@@ -18,19 +18,23 @@ jobs:
 #        shell: bash # 없으면 안되나?
 
     steps:
-      - name: 권한이 read만 있는데 파일을 만들 수 있을까?
+      - name: README 확인
         run: touch test.txt
 
-      - name: 파일이 만들어졌나?
-        run: |
-          ls -al
-          pwd
 
       - name : 기본 shell 이 뭐지?
         run: echo $SHELL
 
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: ls
+        run: ls -al
+
+      - name: 파일 삭제가 되나?
+        run: |
+          rm -rf README.md
+
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
