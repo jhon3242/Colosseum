@@ -21,6 +21,11 @@ jobs:
       - name: 권한이 read만 있는데 파일을 만들 수 있을까?
         run: touch test.txt
 
+      - name: 파일이 만들어졌나?
+        run: |
+          ls -al
+          pwd
+
       - name : 기본 shell 이 뭐지?
         run: echo $SHELL
 
