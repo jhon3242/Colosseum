@@ -45,7 +45,7 @@ jobs:
       - name: Push changes
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: git push
+        run: git push --set-upstream origin some
 
 
 #      - name: Set up JDK 17
