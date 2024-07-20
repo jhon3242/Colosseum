@@ -38,6 +38,7 @@ jobs:
       - name: Create or modify a file
         run: |
           echo "This is a test file created by GitHub Actions" > test-file.txt
+          git checkout -b some
           git add test-file.txt
           git commit -m "Add test-file.txt to test write permissions"
 
