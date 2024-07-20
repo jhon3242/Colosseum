@@ -8,7 +8,7 @@ on:
       - develop
 
 permissions:
-  contents: none
+  contents: read
 
 jobs:
   build:
@@ -18,33 +18,38 @@ jobs:
 #        shell: bash # 없으면 안되나?
 
     steps:
-      - name: README 확인
-        run: touch test.txt=
-
-      - name : 기본 shell 이 뭐지?
-        run: echo $SHELL
-
+#      - name: README 확인
+#        run: touch test.txt=
+#
+#      - name : 기본 shell 이 뭐지?
+#        run: echo $SHELL
+#
       - name: Checkout code
         uses: actions/checkout@v4
+#
+#      - name: 파일 삭제가 되나?
+#        run: |
+#          rm -rf README.md
 
-      - name: ls
-        run: ls -al
-
-      - name: 파일 삭제가 되나?
+      - name: Create or modify a file
         run: |
-          rm -rf README.md
+          echo "This is a test file created by GitHub Actions" > test-file.txt
+          git add test-file.txt
+          git commit -m "Add test-file.txt to test write permissions"
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: git push
 
-      - name: ls
-        run: ls -al
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: gradlew 사용 가능하도록 권한 변경
-        run: chmod +x gradlew
-
-      - name: Build gradlew
-        run: ./gradlew build
+#      - name: Set up JDK 17
+#        uses: actions/setup-java@v4
+#        with:
+#          distribution: 'temurin'
+#          java-version: '17'
+#
+#      - name: gradlew 사용 가능하도록 권한 변경
+#        run: chmod +x gradlew
+#
+#      - name: Build gradlew
+#        run: ./gradlew build
