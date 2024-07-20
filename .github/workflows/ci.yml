@@ -8,7 +8,7 @@ on:
       - develop
 
 permissions:
-  contents: read
+  contents: none
 
 jobs:
   build:
@@ -19,8 +19,7 @@ jobs:
 
     steps:
       - name: README 확인
-        run: touch test.txt
-
+        run: touch test.txt=
 
       - name : 기본 shell 이 뭐지?
         run: echo $SHELL
