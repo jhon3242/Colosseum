@@ -11,8 +11,8 @@ jobs:
   detach-test:
     runs-on: ubuntu-latest
     outputs:
-      domain: ${{steps.ffff.outputs.main}}
-      web: ${{steps.ffff.outputs.test}}
+      main: ${{steps.ffff.outputs.main}}
+      test: ${{steps.ffff.outputs.test}}
     steps:
       - name: ffff
         uses: dorny/paths-filter@v3
