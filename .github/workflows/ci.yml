@@ -29,13 +29,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-     - name: check domain
-       if : ${{ needs.detach-test.outputs.main  == 'ture' }}
+     - name: check main
+       if : ${{ needs.detach-test.outputs.main == 'true' }}
        run: echo "hello World main"
 
      - name: check test
-       if: ${{ needs.detach-test.outputs.test  == 'ture' }}
-       run: echo "hello World web"
+       if: ${{ needs.detach-test.outputs.test == 'true' }}
+       run: echo "hello World test"
 
   build:
     runs-on: ubuntu-latest
