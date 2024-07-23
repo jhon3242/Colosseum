@@ -1,4 +1,4 @@
 package colosseum.colosseum;
 
-public class som {
+public class Change {
 }

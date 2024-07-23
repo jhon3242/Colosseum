@@ -11,18 +11,18 @@ jobs:
   detach-change:
     runs-on: ubuntu-latest
     outputs:
-      domain: ${{steps.ffff.outputs.domain}}
-      web: ${{steps.ffff.outputs.web}}
+      domain: ${{steps.ffff.outputs.main}}
+      web: ${{steps.ffff.outputs.test}}
     steps:
       - name: ffff
         uses: dorny/paths-filter@v3
         id: changes
         with:
           filters: |
-            domain:
-              - 'src/main/java/colosseum/colosseum/domain/**'
-            web:
-              - 'src/main/java/colosseum/colosseum/web/**'
+            main:
+              - 'src/main/**'
+            test:
+              - 'src/test/**'
 
   detach-check:
     needs: detach-change
@@ -30,11 +30,11 @@ jobs:
 
     steps:
      - name: check domain
-       if : ${{ needs.detach-change.outputs.domain  == 'ture' }}
-       run: echo "hello World doamin"
+       if : ${{ needs.detach-change.outputs.main  == 'ture' }}
+       run: echo "hello World main"
 
-     - name: check web
-       if: ${{ needs.detach-change.outputs.web  == 'ture' }}
+     - name: check test
+       if: ${{ needs.detach-change.outputs.test  == 'ture' }}
        run: echo "hello World web"
 
   build:
