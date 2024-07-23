@@ -31,11 +31,11 @@ jobs:
     - name: testzz
       run: echo ${{ needs.detach-test.outputs.main }}
 
-    - name: check main
+    - name: CI Backend
       if : ${{ needs.detach-test.outputs.main == 'true' }}
       run: echo "hello World main"
 
-    - name: check test
+    - name: CI Frontend
       if: ${{ needs.detach-test.outputs.test == 'true' }}
       run: echo "hello World test"
 
