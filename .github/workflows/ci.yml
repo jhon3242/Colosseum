@@ -14,8 +14,8 @@ jobs:
       main: ${{steps.ffff.outputs.main}}
       test: ${{steps.ffff.outputs.test}}
     steps:
-      - name: ffff
-        uses: dorny/paths-filter@v3
+      - uses: dorny/paths-filter@v3
+        id : ffff
         with:
           filters: |
             main:
