@@ -8,7 +8,7 @@ on:
       - develop
 
 jobs:
-  detach-change:
+  detach-test:
     runs-on: ubuntu-latest
     outputs:
       domain: ${{steps.ffff.outputs.main}}
@@ -30,11 +30,11 @@ jobs:
 
     steps:
      - name: check domain
-       if : ${{ needs.detach-change.outputs.main  == 'ture' }}
+       if : ${{ needs.detach-test.outputs.main  == 'ture' }}
        run: echo "hello World main"
 
      - name: check test
-       if: ${{ needs.detach-change.outputs.test  == 'ture' }}
+       if: ${{ needs.detach-test.outputs.test  == 'ture' }}
        run: echo "hello World web"
 
   build:
