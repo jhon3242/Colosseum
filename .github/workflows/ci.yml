@@ -8,6 +8,35 @@ on:
       - develop
 
 jobs:
+  detach-change:
+    runs-on: ubuntu-latest
+    outputs:
+      domain: ${{steps.ffff.outputs.domain}}
+      domain: ${{steps.ffff.outputs.web}}
+    steps:
+      - name: ffff
+        uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            domain:
+              - 'src/main/java/colosseum/colosseum/domain/**'
+            web:
+              - 'src/main/java/colosseum/colosseum/web/**'
+
+  detach-check:
+    needs: detach-change
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: check domain
+       if : ${{ needs.detach-change.outputs.domain  == 'ture' }}
+       run: echo "hello World doamin"
+
+     - name: check web
+       if: ${{ needs.detach-change.outputs.web  == 'ture' }}
+       run: echo "hello World web"
+
   build:
     runs-on: ubuntu-latest
 #    defaults:
