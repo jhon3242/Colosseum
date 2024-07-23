@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       domain: ${{steps.ffff.outputs.domain}}
-      domain: ${{steps.ffff.outputs.web}}
+      web: ${{steps.ffff.outputs.web}}
     steps:
       - name: ffff
         uses: dorny/paths-filter@v3
