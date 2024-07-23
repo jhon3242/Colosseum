@@ -16,7 +16,6 @@ jobs:
     steps:
       - name: ffff
         uses: dorny/paths-filter@v3
-        id: changes
         with:
           filters: |
             main:
