@@ -29,13 +29,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-     - name: check main
-       if : ${{ needs.detach-test.outputs.main == 'true' }}
-       run: echo "hello World main"
+    - name: testzz
+      run: echo ${{ needs.detach-test.outputs.main }}
 
-     - name: check test
-       if: ${{ needs.detach-test.outputs.test == 'true' }}
-       run: echo "hello World test"
+    - name: check main
+      if : ${{ needs.detach-test.outputs.main == 'true' }}
+      run: echo "hello World main"
+
+    - name: check test
+      if: ${{ needs.detach-test.outputs.test == 'true' }}
+      run: echo "hello World test"
 
   build:
     runs-on: ubuntu-latest
