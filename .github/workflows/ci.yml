@@ -15,7 +15,7 @@ jobs:
       test: ${{steps.ffff.outputs.test}}
     steps:
       - uses: dorny/paths-filter@v3
-        id : ffff
+        id: ffff
         with:
           filters: |
             main:
@@ -28,61 +28,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: CI main
+        if: ${{ needs.detach-test.outputs.main == 'true' }}
+        run: echo "hello World main"
 
-
-    - name: CI Backend
-      if : ${{ needs.detach-test.outputs.main == 'true' }}
-      run: echo "hello World main"
-
-    - name: CI Frontend
-      if: ${{ needs.detach-test.outputs.test == 'true' }}
-      run: echo "hello World test"
-
-  build:
-    runs-on: ubuntu-latest
-#    defaults:
-#      run:
-#        shell: bash # 없으면 안되나?
-
-    steps:
-#      - name: README 확인
-#        run: touch test.txt=
-#
-#      - name : 기본 shell 이 뭐지?
-#        run: echo $SHELL
-#
-      - name: Checkout code
-        uses: actions/checkout@v4
-#
-#      - name: 파일 삭제가 되나?
-#        run: |
-#          rm -rf README.md
-      - name: Configure Git
-        run: |
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Create or modify a file
-        run: |
-          echo "This is a test file created by GitHub Actions" > test-file.txt
-          git checkout -b some2
-          git add test-file.txt
-          git commit -m "Add test-file.txt to test write permissions"
-
-      - name: Push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: git push --set-upstream origin some2
-
-
-#      - name: Set up JDK 17
-#        uses: actions/setup-java@v4
-#        with:
-#          distribution: 'temurin'
-#          java-version: '17'
-#
-#      - name: gradlew 사용 가능하도록 권한 변경
-#        run: chmod +x gradlew
-#
-#      - name: Build gradlew
-#        run: ./gradlew build
+      - name: CI test
+        if: ${{ needs.detach-test.outputs.test == 'true' }}
+        run: echo "hello World test"
