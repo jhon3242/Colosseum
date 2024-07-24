@@ -28,8 +28,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: testzz
-      run: echo ${{ needs.detach-test.outputs.main }}
+
 
     - name: CI Backend
       if : ${{ needs.detach-test.outputs.main == 'true' }}
