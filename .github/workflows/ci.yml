@@ -25,7 +25,7 @@ jobs:
 
       - name: echo test
         id: aaaa
-        run: echo "asd"
+        run: echo "asd" >> "$GITHUB_OUTPUT"
 
   detach-check:
     needs: detach-test
