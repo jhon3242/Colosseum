@@ -1,4 +1,4 @@
-name: BE CI for Dev
+name: TEST Workflow
 
 on:
   workflow_dispatch:
